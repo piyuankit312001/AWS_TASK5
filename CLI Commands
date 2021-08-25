@@ -1,0 +1,37 @@
+# Instructions for completing the task
+### This manual consists of only codes that are required in the CLI commands.
+  #### ~ replace the <> and it's contents with relevant arguments in the CMD or CLI
+  
+  aws ec2 run-instance --image-id <your assigned image id> --instance-type t2.micro --subnet-id <your subnet id> --security-group-ids <your desired security group id> --key-name <key-pair name to be used> --count 1
+  
+  aws ec2 create-volume --availability-zone <your availability zone> --volume-type gp2 --size 10
+  
+  aws ec2 attach-volume-id <volume id of the volume to be attached> --instance-id <instance id of the instance to which the volume should be attached to> --device /dev/sdf
+  
+  ssh -l ec2-user <your ec2 instance public address> -i <key-pair name>.pem sudo fdisk /dev/xvdf
+  
+  ssh -l ec2-user <your instance public address> -i <key-pair name>.pem sudo mkfs.ext4 /dev/xvdf
+  
+  ssh -l ec2-user <your instance public address> -i <key-pair name>.pem sudo mount /dev/xvdf /var/www/html
+  
+  ssh -l ec2-user <your instance public address> -i <key-pair name>.pem sudo yum install httpd -y
+  
+  ssh -l ec2-user <your instance public address> -i <key-pair name>.pem sudo systemctl start httpd
+  
+  ssh -l ec2-user <your instance public address> -i <key-pair name>.pem sudo systemctl status httpd
+  
+  ssh -l ec2-user <your instance public address> -i <key-pair name>.pem
+  
+  aws s3api create-bucket --bucket <bucket name> --region <availability region> --create-bucket-configuration Location=<availability region>
+  
+  aws s3api put-bucket-acl --acl public -read --bucket <bucket name>
+  
+  aws s3api put-object --bucket <bucket-name> --key <give a directory name for the bucket>/<image name to be stored in the bucket> -body <location of the image from your local storage>
+  
+  aws s3api put-object-acl --bucket <bucket name> --key <directory name>/<onject name stored in the bucket> --grant-read uri=http://acs.amazonaws.com/global/AllUsers
+  
+  aws cloudfront create-distribution --origin-domain-name your s3 bucket domain> --default-root-object <path to the object from the bucket>
+  
+  aws s3api delete-object --bucket <bucket name> --key <path of the object in the bucket>
+  
+  aws s3api delete-bucket --bucket <bucket name> --region <availability zone of the bucket>
